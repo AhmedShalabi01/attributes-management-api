@@ -35,4 +35,13 @@ public class UserAttributesModel {
     private String employmentStatus;
 
 
+    public UserAttributesModel(String id, String role, String department, TimeSchedule timeSchedule, int yearOfExperience, String clearanceLevel, String employmentStatus) {
+        this.id = id;
+        this.role = role;
+        this.department = department;
+        this.timeSchedule = timeSchedule;
+        this.yearOfExperience = yearOfExperience;
+        this.clearanceLevel = clearanceLevel;
+        this.employmentStatus = employmentStatus;
+    }
 }

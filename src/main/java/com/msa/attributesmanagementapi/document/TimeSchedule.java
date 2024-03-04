@@ -17,8 +17,15 @@ public class TimeSchedule {
     @NotEmpty(message = "The week schedule can not be empty")
     private Set<String> daysOfWeek;
 
-    private TimeSchedule() {
+    public TimeSchedule(LocalTime startTime, LocalTime endTime, Set<String> daysOfWeek) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.daysOfWeek = daysOfWeek;
     }
+
+    public TimeSchedule() {
+    }
+
 
     public static TimeSchedule getInstance() {
         return TimeScheduleHolder.INSTANCE;

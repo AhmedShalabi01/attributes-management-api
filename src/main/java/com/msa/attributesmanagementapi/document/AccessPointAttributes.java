@@ -17,4 +17,11 @@ public class AccessPointAttributes {
     private Boolean isTampered;
     private int occupancyLevel;
 
+    public AccessPointAttributes(String id, String location, String ipAddress, Boolean isTampered, int occupancyLevel) {
+        this.id = id;
+        this.location = location;
+        this.ipAddress = ipAddress;
+        this.isTampered = isTampered;
+        this.occupancyLevel = occupancyLevel;
+    }
 }

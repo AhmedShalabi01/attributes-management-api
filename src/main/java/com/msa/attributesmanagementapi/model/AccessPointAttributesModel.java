@@ -24,4 +24,12 @@ public class AccessPointAttributesModel {
     @NotNull
     @Min(value = 1,message = "The occupancy level can not be zero or less")
     private int occupancyLevel;
+
+    public AccessPointAttributesModel(String id, String location, String ipAddress, Boolean isTampered, int occupancyLevel) {
+        this.id = id;
+        this.location = location;
+        this.ipAddress = ipAddress;
+        this.isTampered = isTampered;
+        this.occupancyLevel = occupancyLevel;
+    }
 }
