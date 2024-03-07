@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pacs/access-points/attributes")
+@RequestMapping("/access-points-attributes")
 public class AccessPointAttributesController {
 
     private final AccessPointAttributesService accessPointService;
@@ -25,27 +25,27 @@ public class AccessPointAttributesController {
         return new ResponseEntity<>(accessPointService.getAllAccessPointAttributes(), HttpStatus.OK);
     }
 
-    @GetMapping("findAccessPointAttributes/{id}")
+    @GetMapping("/findAccessPointAttributes/{id}")
     public ResponseEntity<AccessPointAttributesModel> getAccessPointAttributes(@PathVariable String id){
         return new ResponseEntity<>(accessPointService.findAccessPointAttributes(id), HttpStatus.OK);
     }
 
 
-    @PostMapping(path = "/addNewAccessPointAttributes")
+    @PostMapping(path = "/add")
     public ResponseEntity<String> createNewAccessPointAttributes(@RequestBody AccessPointAttributesModel accessPointAttributesModel){
         accessPointService.createNewAccessPointAttributes(accessPointAttributesModel);
         return new ResponseEntity<>("Access Point Attributes Created",HttpStatus.CREATED);
     }
 
 
-    @PutMapping(path = "/updateAccessPointAttributes/{id}")
+    @PutMapping(path = "/update/{id}")
     public ResponseEntity<String> updateAccessPointAttributes(@RequestBody AccessPointAttributesModel accessPointAttributesModel,@PathVariable String id){
         accessPointService.updateAccessPointAttributes(accessPointAttributesModel,id);
         return new ResponseEntity<>("Access Point Attributes Updated",HttpStatus.OK);
     }
 
 
-    @DeleteMapping (value = "/deleteAccessPointAttributes/{id}")
+    @DeleteMapping (value = "/delete/{id}")
     public ResponseEntity<String> deleteAccessPointAttributes(@PathVariable String id){
         accessPointService.deleteAccessPointAttributes(id);
         return new ResponseEntity<>("Access Point Attributes Deleted",HttpStatus.OK);

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pacs/users/attributes")
+@RequestMapping("/users-attributes")
 public class UserAttributesController {
 
     private final UserAttributesService userService;
@@ -19,32 +19,32 @@ public class UserAttributesController {
     }
 
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public ResponseEntity<List<UserAttributesModel>> getAllUsersAttributes(){
         return new ResponseEntity<>(userService.getAllUsersAttributes(), HttpStatus.OK);
     }
 
-    @GetMapping("findUserAttributes/{id}")
+    @GetMapping("/findUserAttributes/{id}")
     public ResponseEntity<UserAttributesModel> getUserAttributes(@PathVariable String id){
         return new ResponseEntity<>(userService.findUserAttributes(id), HttpStatus.OK);
     }
 
 
-    @PostMapping(path = "/addNewUserAttributes")
+    @PostMapping(path = "/add")
     public ResponseEntity<String> createNewUserAttributes(@RequestBody UserAttributesModel userModel){
         userService.createNewUserAttributes(userModel);
         return new ResponseEntity<>("User Attributes Created",HttpStatus.CREATED);
     }
 
 
-    @PutMapping(path = "/updateUserAttributes/{id}")
+    @PutMapping(path = "/update/{id}")
     public ResponseEntity<String> updateUserAttributes(@RequestBody UserAttributesModel userModel,@PathVariable String id){
         userService.updateUserAttributes(userModel,id);
         return new ResponseEntity<>("User Attributes Updated",HttpStatus.OK);
     }
 
 
-    @DeleteMapping (value = "/deleteUserAttributes/{id}")
+    @DeleteMapping (value = "/delete/{id}")
     public ResponseEntity<String> deleteUserAttributes(@PathVariable String id){
         userService.deleteUserAttributes(id);
         return new ResponseEntity<>("User Attributes Deleted",HttpStatus.OK);
