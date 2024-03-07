@@ -23,15 +23,4 @@ public class TimeSchedule {
         this.daysOfWeek = daysOfWeek;
     }
 
-    public TimeSchedule() {
-    }
-
-
-    public static TimeSchedule getInstance() {
-        return TimeScheduleHolder.INSTANCE;
-    }
-
-    private static class TimeScheduleHolder {
-        private static final TimeSchedule INSTANCE = new TimeSchedule();
-    }
 }

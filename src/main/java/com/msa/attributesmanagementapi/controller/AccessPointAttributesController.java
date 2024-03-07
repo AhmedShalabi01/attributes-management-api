@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pacs/accesspoints/attributes")
+@RequestMapping("/pacs/access-points/attributes")
 public class AccessPointAttributesController {
 
     private final AccessPointAttributesService accessPointService;
@@ -19,22 +19,24 @@ public class AccessPointAttributesController {
         this.accessPointService = accessPointService;
     }
 
-    //-------------------------------------------------------------------------------------------//
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<List<AccessPointAttributesModel>> getAllAccessPointAttributes(){
         return new ResponseEntity<>(accessPointService.getAllAccessPointAttributes(), HttpStatus.OK);
     }
 
-    //-------------------------------------------------------------------------------------------//
+    @GetMapping("findAccessPointAttributes/{id}")
+    public ResponseEntity<AccessPointAttributesModel> getAccessPointAttributes(@PathVariable String id){
+        return new ResponseEntity<>(accessPointService.findAccessPointAttributes(id), HttpStatus.OK);
+    }
 
-    @PostMapping(path = "/insertNewAccessPointAttributes")
+
+    @PostMapping(path = "/addNewAccessPointAttributes")
     public ResponseEntity<String> createNewAccessPointAttributes(@RequestBody AccessPointAttributesModel accessPointAttributesModel){
         accessPointService.createNewAccessPointAttributes(accessPointAttributesModel);
         return new ResponseEntity<>("Access Point Attributes Created",HttpStatus.CREATED);
     }
 
-    //-------------------------------------------------------------------------------------------//
 
     @PutMapping(path = "/updateAccessPointAttributes/{id}")
     public ResponseEntity<String> updateAccessPointAttributes(@RequestBody AccessPointAttributesModel accessPointAttributesModel,@PathVariable String id){
@@ -42,7 +44,6 @@ public class AccessPointAttributesController {
         return new ResponseEntity<>("Access Point Attributes Updated",HttpStatus.OK);
     }
 
-    //-------------------------------------------------------------------------------------------//
 
     @DeleteMapping (value = "/deleteAccessPointAttributes/{id}")
     public ResponseEntity<String> deleteAccessPointAttributes(@PathVariable String id){

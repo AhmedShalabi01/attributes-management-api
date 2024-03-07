@@ -18,22 +18,24 @@ public class UserAttributesController {
         this.userService = userService;
     }
 
-    //-------------------------------------------------------------------------------------------//
 
-    @GetMapping
+    @GetMapping("list")
     public ResponseEntity<List<UserAttributesModel>> getAllUsersAttributes(){
         return new ResponseEntity<>(userService.getAllUsersAttributes(), HttpStatus.OK);
     }
 
-    //-------------------------------------------------------------------------------------------//
+    @GetMapping("findUserAttributes/{id}")
+    public ResponseEntity<UserAttributesModel> getUserAttributes(@PathVariable String id){
+        return new ResponseEntity<>(userService.findUserAttributes(id), HttpStatus.OK);
+    }
 
-    @PostMapping(path = "/insertNewUserAttributes")
+
+    @PostMapping(path = "/addNewUserAttributes")
     public ResponseEntity<String> createNewUserAttributes(@RequestBody UserAttributesModel userModel){
         userService.createNewUserAttributes(userModel);
         return new ResponseEntity<>("User Attributes Created",HttpStatus.CREATED);
     }
 
-    //-------------------------------------------------------------------------------------------//
 
     @PutMapping(path = "/updateUserAttributes/{id}")
     public ResponseEntity<String> updateUserAttributes(@RequestBody UserAttributesModel userModel,@PathVariable String id){
@@ -41,7 +43,6 @@ public class UserAttributesController {
         return new ResponseEntity<>("User Attributes Updated",HttpStatus.OK);
     }
 
-    //-------------------------------------------------------------------------------------------//
 
     @DeleteMapping (value = "/deleteUserAttributes/{id}")
     public ResponseEntity<String> deleteUserAttributes(@PathVariable String id){

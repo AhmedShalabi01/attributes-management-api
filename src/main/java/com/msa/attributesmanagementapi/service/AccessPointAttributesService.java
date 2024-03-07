@@ -3,6 +3,7 @@ package com.msa.attributesmanagementapi.service;
 import com.msa.attributesmanagementapi.mapper.AccessPointAttributesMapper;
 import com.msa.attributesmanagementapi.model.AccessPointAttributesModel;
 import com.msa.attributesmanagementapi.repo.AccessPointAttributesRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,22 +21,18 @@ public class AccessPointAttributesService {
     private final AccessPointAttributesRepository repository;
     private final AccessPointAttributesMapper accessPointAttributesMapper;
 
-    //-------------------------------------------------------------------------------------------//
     public List<AccessPointAttributesModel> getAllAccessPointAttributes(){
         return repository.findAll()
                 .stream()
                 .map(accessPointAttributesMapper::toModel)
                 .collect(Collectors.toList());
-
     }
 
-    //-------------------------------------------------------------------------------------------//
 
     public void createNewAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel){
         repository.save(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
 
-    //-------------------------------------------------------------------------------------------//
 
     public void updateAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel,String accessPointId ){
         accessPointAttributesMapper.toModel(repository
@@ -45,13 +42,18 @@ public class AccessPointAttributesService {
         repository.save(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
 
-    //-------------------------------------------------------------------------------------------//
     public void deleteAccessPointAttributes(String accessPointId){
         accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
                 .orElseThrow( ()-> new RuntimeException("The AccessPoint with ID : (" + accessPointId + ") does not exist")));
 
         repository.deleteById(accessPointId);
+    }
+
+    public AccessPointAttributesModel findAccessPointAttributes(String accessPointId){
+        return accessPointAttributesMapper.toModel(repository
+                .findById(accessPointId)
+                .orElseThrow( ()-> new EntityNotFoundException("The Access Point with ID : (" + accessPointId + ") does not exist")));
     }
 
 }

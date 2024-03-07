@@ -3,6 +3,7 @@ package com.msa.attributesmanagementapi.service;
 import com.msa.attributesmanagementapi.mapper.UserAttributeMapper;
 import com.msa.attributesmanagementapi.model.UserAttributesModel;
 import com.msa.attributesmanagementapi.repo.UserAttributesRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,6 @@ public class UserAttributesService {
     private final UserAttributeMapper userMapper;
 
 
-    //-------------------------------------------------------------------------------------------//
 
     public List<UserAttributesModel> getAllUsersAttributes(){
 
@@ -33,7 +33,6 @@ public class UserAttributesService {
 
     }
 
-    //-------------------------------------------------------------------------------------------//
 
     public void createNewUserAttributes(@Valid UserAttributesModel userModel){
 
@@ -41,22 +40,26 @@ public class UserAttributesService {
 
     }
 
-    //-------------------------------------------------------------------------------------------//
 
     public void updateUserAttributes(@Valid UserAttributesModel userModel,String userId ){
         userMapper.toModel(repository
                 .findById(userId)
-                .orElseThrow( ()-> new RuntimeException("The User with ID : (" + userId + ") does not exist")));
+                .orElseThrow( ()-> new EntityNotFoundException("The User with ID : (" + userId + ") does not exist")));
 
         repository.save(userMapper.toDocument(userModel));
     }
 
-    //-------------------------------------------------------------------------------------------//
     public void deleteUserAttributes(String userId){
         userMapper.toModel(repository
                 .findById(userId)
-                .orElseThrow( ()-> new RuntimeException("The User with ID : (" + userId + ") does not exist")));
+                .orElseThrow( ()-> new EntityNotFoundException("The User with ID : (" + userId + ") does not exist")));
 
         repository.deleteById(userId);
+    }
+
+    public UserAttributesModel findUserAttributes(String userId){
+        return userMapper.toModel(repository
+                .findById(userId)
+                .orElseThrow( ()-> new EntityNotFoundException("The User with ID : (" + userId + ") does not exist")));
     }
 }
