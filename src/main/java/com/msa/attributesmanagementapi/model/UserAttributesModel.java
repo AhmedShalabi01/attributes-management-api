@@ -5,9 +5,11 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class UserAttributesModel {
 
 
@@ -24,9 +26,9 @@ public class UserAttributesModel {
     @Valid
     private TimeSchedule timeSchedule;
 
-    @Min(value = 1,message = "The years of experience can not be zero or less")
+    @Min(value = 1,message = "The years of experience can less than zero")
     @NotNull
-    private int yearOfExperience;
+    private int yearsOfExperience;
 
     @NotBlank(message = "The clearance Level field Can not be blank")
     private String clearanceLevel;
@@ -35,13 +37,5 @@ public class UserAttributesModel {
     private String employmentStatus;
 
 
-    public UserAttributesModel(String id, String role, String department, TimeSchedule timeSchedule, int yearOfExperience, String clearanceLevel, String employmentStatus) {
-        this.id = id;
-        this.role = role;
-        this.department = department;
-        this.timeSchedule = timeSchedule;
-        this.yearOfExperience = yearOfExperience;
-        this.clearanceLevel = clearanceLevel;
-        this.employmentStatus = employmentStatus;
-    }
+
 }

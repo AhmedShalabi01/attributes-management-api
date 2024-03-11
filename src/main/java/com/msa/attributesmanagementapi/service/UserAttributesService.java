@@ -22,8 +22,7 @@ public class UserAttributesService {
     private final UserAttributeMapper userMapper;
 
 
-
-    public List<UserAttributesModel> getAllUsersAttributes(){
+    public List<UserAttributesModel> getAllUsersAttributes() {
 
 
         return repository.findAll()
@@ -34,32 +33,31 @@ public class UserAttributesService {
     }
 
 
-    public void createNewUserAttributes(@Valid UserAttributesModel userModel){
+    public void createNewUserAttributes(@Valid UserAttributesModel userModel) {
 
         repository.insert(userMapper.toDocument(userModel));
 
     }
 
-
-    public void updateUserAttributes(@Valid UserAttributesModel userModel,String userId ){
+    public void updateUserAttributes(@Valid UserAttributesModel userModel, String userId) {
         userMapper.toModel(repository
                 .findById(userId)
-                .orElseThrow( ()-> new EntityNotFoundException("The User with ID : (" + userId + ") does not exist")));
+                .orElseThrow(() -> new EntityNotFoundException("The User with ID : (" + userId + ") does not exist")));
 
         repository.save(userMapper.toDocument(userModel));
     }
 
-    public void deleteUserAttributes(String userId){
+    public void deleteUserAttributes(String userId) {
         userMapper.toModel(repository
                 .findById(userId)
-                .orElseThrow( ()-> new EntityNotFoundException("The User with ID : (" + userId + ") does not exist")));
+                .orElseThrow(() -> new EntityNotFoundException("The User with ID : (" + userId + ") does not exist")));
 
         repository.deleteById(userId);
     }
 
-    public UserAttributesModel findUserAttributes(String userId){
+    public UserAttributesModel findUserAttributes(String userId) {
         return userMapper.toModel(repository
                 .findById(userId)
-                .orElseThrow( ()-> new EntityNotFoundException("The User with ID : (" + userId + ") does not exist")));
+                .orElseThrow(() -> new EntityNotFoundException("The User with ID : (" + userId + ") does not exist")));
     }
 }

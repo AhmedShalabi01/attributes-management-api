@@ -1,11 +1,13 @@
 package com.msa.attributesmanagementapi.document;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@AllArgsConstructor
 @Document
 public class AccessPointAttributes {
 
@@ -17,11 +19,4 @@ public class AccessPointAttributes {
     private Boolean isTampered;
     private int occupancyLevel;
 
-    public AccessPointAttributes(String id, String location, String ipAddress, Boolean isTampered, int occupancyLevel) {
-        this.id = id;
-        this.location = location;
-        this.ipAddress = ipAddress;
-        this.isTampered = isTampered;
-        this.occupancyLevel = occupancyLevel;
-    }
 }
