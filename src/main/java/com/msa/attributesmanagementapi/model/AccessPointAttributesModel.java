@@ -26,6 +26,4 @@ public class AccessPointAttributesModel {
     @NotNull
     @Min(value = 1,message = "The occupancy level can not be zero or less")
     private int occupancyLevel;
-
-
 }

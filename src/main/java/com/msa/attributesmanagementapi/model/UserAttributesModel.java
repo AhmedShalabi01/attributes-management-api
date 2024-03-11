@@ -26,7 +26,8 @@ public class UserAttributesModel {
     @Valid
     private TimeSchedule timeSchedule;
 
-    @Min(value = 1,message = "The years of experience can less than zero")
+    @Min(value = 1, message = "The years of experience can not be zero or less")
+
     @NotNull
     private int yearsOfExperience;
 
@@ -35,7 +36,4 @@ public class UserAttributesModel {
 
     @NotBlank(message = "The employment status Level field Can not be blank")
     private String employmentStatus;
-
-
-
 }

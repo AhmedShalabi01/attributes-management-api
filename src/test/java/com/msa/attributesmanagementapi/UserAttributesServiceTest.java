@@ -65,7 +65,7 @@ class UserAttributesServiceTest {
             UserAttributes doc = invocation.getArgument(0);
             // Construct a UserAttributesModel from 'doc' (your mapping logic here)
             return new UserAttributesModel(doc.getId(), doc.getRole(), doc.getDepartment(),
-                    doc.getTimeSchedule(), doc.getYearOfExperience(), doc.getClearanceLevel(),
+                    doc.getTimeSchedule(), doc.getYearsOfExperience(), doc.getClearanceLevel(),
                     doc.getEmploymentStatus());
         });
 
