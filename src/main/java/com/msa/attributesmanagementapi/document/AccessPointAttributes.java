@@ -8,7 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @AllArgsConstructor
+
 @Document(collection = "accessPointAttributes")
+
 public class AccessPointAttributes {
 
     @Id

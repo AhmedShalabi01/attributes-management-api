@@ -7,7 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @AllArgsConstructor
+
 @Document(collection = "userAttributes")
+
 public class UserAttributes {
 
     @Id
@@ -15,7 +17,9 @@ public class UserAttributes {
     private String role;
     private String department;
     private TimeSchedule timeSchedule;
+
     private Integer yearsOfExperience;
+
     private String clearanceLevel;
     private String employmentStatus;
 }

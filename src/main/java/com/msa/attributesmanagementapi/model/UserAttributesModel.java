@@ -27,6 +27,7 @@ public class UserAttributesModel {
     private TimeSchedule timeSchedule;
 
     @Min(value = 1, message = "The years of experience can not be zero or less")
+
     @NotNull
     private int yearsOfExperience;
 
