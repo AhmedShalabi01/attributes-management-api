@@ -24,8 +24,6 @@ public class UserAttributesService {
 
 
     public List<UserAttributesModel> getAllUsersAttributes(){
-
-
         return repository.findAll()
                 .stream()
                 .map(userMapper::toModel)
@@ -35,9 +33,7 @@ public class UserAttributesService {
 
 
     public void createNewUserAttributes(@Valid UserAttributesModel userModel){
-
         repository.insert(userMapper.toDocument(userModel));
-
     }
 
 
