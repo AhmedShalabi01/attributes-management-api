@@ -17,9 +17,7 @@ public class UserAttributes {
     private String role;
     private String department;
     private TimeSchedule timeSchedule;
-
     private Integer yearsOfExperience;
-
     private String clearanceLevel;
     private String employmentStatus;
 }
