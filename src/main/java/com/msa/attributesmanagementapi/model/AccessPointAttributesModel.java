@@ -17,9 +17,6 @@ public class AccessPointAttributesModel {
     @NotBlank(message = "The ID field Can not be blank")
     private String location;
 
-    @NotBlank(message = "The ID field Can not be blank")
-    private String ipAddress;
-
     @NotNull
     private Boolean isTampered;
 

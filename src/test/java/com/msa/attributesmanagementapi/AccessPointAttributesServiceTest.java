@@ -33,21 +33,21 @@ class AccessPointAttributesServiceTest {
     void getAllAccessPointAttributes_success() {
         // Setup - Test Documents
         List<AccessPointAttributes> documents = List.of(
-                new AccessPointAttributes("1", "Building A", "192.168.1.10", false, 20),
-                new AccessPointAttributes("2", "Cafeteria", "192.168.1.25", true, 5)
+                new AccessPointAttributes("1", "Building A",  false, 20),
+                new AccessPointAttributes("2", "Cafeteria",  true, 5)
         );
 
         // Setup - Test Models
         List<AccessPointAttributesModel> expectedModels = List.of(
-                new AccessPointAttributesModel("1", "Building A", "192.168.1.10", false, 20),
-                new AccessPointAttributesModel("2", "Cafeteria", "192.168.1.25", true, 5)
+                new AccessPointAttributesModel("1", "Building A",  false, 20),
+                new AccessPointAttributesModel("2", "Cafeteria", true, 5)
         );
 
         // Setup Mocks
         when(repository.findAll()).thenReturn(documents);
         when(accessPointAttributesMapper.toModel(any(AccessPointAttributes.class))).thenAnswer(invocation -> {
             AccessPointAttributes doc = invocation.getArgument(0);
-            return new AccessPointAttributesModel(doc.getId(), doc.getLocation(), doc.getIpAddress(),
+            return new AccessPointAttributesModel(doc.getId(), doc.getLocation(),
                     doc.getIsTampered(), doc.getOccupancyLevel());
         });
 
@@ -62,9 +62,9 @@ class AccessPointAttributesServiceTest {
 
     @Test
     void createNewAccessPointAttributes_valid() {
-        AccessPointAttributesModel model = new AccessPointAttributesModel("3", "Office 101", "192.168.1.50", false, 8);
+        AccessPointAttributesModel model = new AccessPointAttributesModel("3", "Office 101", false, 8);
 
-        when(accessPointAttributesMapper.toDocument(model)).thenReturn(new AccessPointAttributes("3", "Office 101", "192.168.1.50", false, 8));
+        when(accessPointAttributesMapper.toDocument(model)).thenReturn(new AccessPointAttributes("3", "Office 101", false, 8));
         service.createNewAccessPointAttributes(model);
 
         verify(accessPointAttributesMapper).toDocument(model);
@@ -74,9 +74,9 @@ class AccessPointAttributesServiceTest {
     @Test
     void updateAccessPointAttributes_found() {
         String accessPointId = "1";
-        AccessPointAttributesModel updatedModel = new AccessPointAttributesModel(accessPointId, "New Location", "192.168.1.15", true, 15);
+        AccessPointAttributesModel updatedModel = new AccessPointAttributesModel(accessPointId, "New Location", true, 15);
 
-        AccessPointAttributes existingDocument = new AccessPointAttributes(accessPointId, "New Location", "192.168.1.15", true, 15);
+        AccessPointAttributes existingDocument = new AccessPointAttributes(accessPointId, "New Location", true, 15);
         when(repository.findById(accessPointId)).thenReturn(Optional.of(existingDocument));
 
         when(accessPointAttributesMapper.toDocument(updatedModel)).thenReturn(existingDocument);
@@ -93,7 +93,7 @@ class AccessPointAttributesServiceTest {
     @Test
     void deleteAccessPointAttributes_found() {
         String accessPointId = "2";
-        AccessPointAttributes existingDocument = new AccessPointAttributes(accessPointId, "Location", "192.168.1.15", true, 15);
+        AccessPointAttributes existingDocument = new AccessPointAttributes(accessPointId, "Location", true, 15);
         when(repository.findById(accessPointId)).thenReturn(Optional.of(existingDocument));
 
         service.deleteAccessPointAttributes(accessPointId);

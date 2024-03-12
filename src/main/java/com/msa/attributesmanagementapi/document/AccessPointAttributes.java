@@ -17,7 +17,6 @@ public class AccessPointAttributes {
     private String id;
     @Indexed(unique = true)
     private String location;
-    private String ipAddress;
     private Boolean isTampered;
     private Integer occupancyLevel;
 }
