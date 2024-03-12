@@ -1,4 +1,4 @@
-package com.msa.attributesmanagementapi.exceptionhandlers.responsebodies;
+package com.msa.attributesmanagementapi.exceptionhandler.responsebodies;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,9 +1,9 @@
-package com.msa.attributesmanagementapi.exceptionhandlers;
+package com.msa.attributesmanagementapi.exceptionhandler;
 
 
-import com.msa.attributesmanagementapi.exceptionhandlers.responsebodies.ConstraintViolationExceptionResponseBody;
-import com.msa.attributesmanagementapi.exceptionhandlers.responsebodies.DuplicateKeyExceptionResponseBody;
-import com.msa.attributesmanagementapi.exceptionhandlers.responsebodies.EntityNotFoundExceptionBody;
+import com.msa.attributesmanagementapi.exceptionhandler.responsebodies.ConstraintViolationExceptionResponseBody;
+import com.msa.attributesmanagementapi.exceptionhandler.responsebodies.DuplicateKeyExceptionResponseBody;
+import com.msa.attributesmanagementapi.exceptionhandler.responsebodies.EntityNotFoundExceptionBody;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DuplicateKeyException;
