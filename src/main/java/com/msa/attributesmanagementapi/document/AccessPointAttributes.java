@@ -8,15 +8,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @AllArgsConstructor
-@Document
+
+@Document(collection = "accessPointAttributes")
+
 public class AccessPointAttributes {
 
     @Id
     private String id;
     @Indexed(unique = true)
     private String location;
-    private String ipAddress;
     private Boolean isTampered;
-    private int occupancyLevel;
-
+    private Integer occupancyLevel;
 }

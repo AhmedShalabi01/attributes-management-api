@@ -22,8 +22,8 @@ public class UserAttributesService {
     private final UserAttributeMapper userMapper;
 
 
-    public List<UserAttributesModel> getAllUsersAttributes() {
 
+    public List<UserAttributesModel> getAllUsersAttributes(){
 
         return repository.findAll()
                 .stream()
@@ -33,10 +33,11 @@ public class UserAttributesService {
     }
 
 
-    public void createNewUserAttributes(@Valid UserAttributesModel userModel) {
+
+    public void createNewUserAttributes(@Valid UserAttributesModel userModel){
+
 
         repository.insert(userMapper.toDocument(userModel));
-
     }
 
     public void updateUserAttributes(@Valid UserAttributesModel userModel, String userId) {
