@@ -2,6 +2,7 @@ package com.msa.attributesmanagementapi.controller;
 
 import com.msa.attributesmanagementapi.model.UserAttributesModel;
 import com.msa.attributesmanagementapi.service.UserAttributesService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,14 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users-attributes")
+@RequiredArgsConstructor
 public class UserAttributesController {
 
     private final UserAttributesService userService;
-
-    public UserAttributesController(UserAttributesService userService) {
-        this.userService = userService;
-    }
-
 
     @GetMapping("/list")
     public ResponseEntity<List<UserAttributesModel>> getAllUsersAttributes(){
