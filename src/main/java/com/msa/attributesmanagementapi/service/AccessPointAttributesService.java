@@ -37,7 +37,7 @@ public class AccessPointAttributesService {
     public void updateAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel,String accessPointId ){
         accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
-                .orElseThrow( ()-> new RuntimeException("The AccessPoint with ID : (" + accessPointId + ") does not exist")));
+                .orElseThrow( ()-> new RuntimeException("The AccessPoint with ID(" + accessPointId + ") does not exist")));
 
         repository.save(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
@@ -45,7 +45,7 @@ public class AccessPointAttributesService {
     public void deleteAccessPointAttributes(String accessPointId){
         accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
-                .orElseThrow( ()-> new RuntimeException("The AccessPoint with ID : (" + accessPointId + ") does not exist")));
+                .orElseThrow( ()-> new RuntimeException("The AccessPoint with ID(" + accessPointId + ") does not exist")));
 
         repository.deleteById(accessPointId);
     }
@@ -53,12 +53,12 @@ public class AccessPointAttributesService {
     public AccessPointAttributesModel findAccessPointAttributesById(String accessPointId){
         return accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
-                .orElseThrow( ()-> new EntityNotFoundException("The Access Point with ID : (" + accessPointId + ") does not exist")));
+                .orElseThrow( ()-> new EntityNotFoundException("The Access Point with ID(" + accessPointId + ") does not exist")));
     }
     public AccessPointAttributesModel findAccessPointAttributesByLocation(String accessPointLocation){
         return accessPointAttributesMapper.toModel(repository
                 .findByLocation(accessPointLocation)
-                .orElseThrow( ()-> new EntityNotFoundException("The Access Point with Location : (" + accessPointLocation + ") does not exist")));
+                .orElseThrow( ()-> new EntityNotFoundException("The Access Point with Location(" + accessPointLocation + ") does not exist")));
     }
 
 }
