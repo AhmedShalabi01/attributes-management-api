@@ -50,10 +50,15 @@ public class AccessPointAttributesService {
         repository.deleteById(accessPointId);
     }
 
-    public AccessPointAttributesModel findAccessPointAttributes(String accessPointId){
+    public AccessPointAttributesModel findAccessPointAttributesById(String accessPointId){
         return accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
                 .orElseThrow( ()-> new EntityNotFoundException("The Access Point with ID : (" + accessPointId + ") does not exist")));
+    }
+    public AccessPointAttributesModel findAccessPointAttributesByLocation(String accessPointLocation){
+        return accessPointAttributesMapper.toModel(repository
+                .findByLocation(accessPointLocation)
+                .orElseThrow( ()-> new EntityNotFoundException("The Access Point with Location : (" + accessPointLocation + ") does not exist")));
     }
 
 }
