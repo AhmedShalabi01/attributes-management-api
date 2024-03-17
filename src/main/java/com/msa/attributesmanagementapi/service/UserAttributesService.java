@@ -32,11 +32,7 @@ public class UserAttributesService {
 
     }
 
-
-
     public void createNewUserAttributes(@Valid UserAttributesModel userModel){
-
-
         repository.insert(userMapper.toDocument(userModel));
     }
 
