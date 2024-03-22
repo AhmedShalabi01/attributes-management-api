@@ -5,6 +5,7 @@ import com.msa.attributesmanagementapi.model.UserAttributesModel;
 import com.msa.attributesmanagementapi.repo.UserAttributesRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +38,7 @@ public class UserAttributesService {
     }
 
     public void updateUserAttributes(@Valid UserAttributesModel userModel, String userId) {
+        if(!userId.equals(userModel.getId())) throw new ValidationException("The Path ID and Request ID not matching");
         userMapper.toModel(repository
                 .findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("The User with ID : (" + userId + ") does not exist")));
