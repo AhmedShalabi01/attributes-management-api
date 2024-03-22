@@ -4,8 +4,10 @@ package com.msa.attributesmanagementapi.exceptionhandler;
 import com.msa.attributesmanagementapi.exceptionhandler.responsebodies.ConstraintViolationExceptionResponseBody;
 import com.msa.attributesmanagementapi.exceptionhandler.responsebodies.DuplicateKeyExceptionResponseBody;
 import com.msa.attributesmanagementapi.exceptionhandler.responsebodies.EntityNotFoundExceptionBody;
+import com.msa.attributesmanagementapi.exceptionhandler.responsebodies.ValidationExceptionBody;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ValidationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -46,6 +48,18 @@ public class GlobalExceptionHandler {
 
         EntityNotFoundExceptionBody body =
                 new EntityNotFoundExceptionBody(status, exception);
+
+        return new ResponseEntity<>(body,status);
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<ValidationExceptionBody>
+    handleValidationException(ValidationException exception){
+
+        HttpStatusCode status = HttpStatus.BAD_REQUEST;
+
+        ValidationExceptionBody body =
+                new ValidationExceptionBody(status,exception);
 
         return new ResponseEntity<>(body,status);
     }
