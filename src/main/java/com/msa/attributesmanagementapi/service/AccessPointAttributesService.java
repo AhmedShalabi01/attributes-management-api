@@ -29,7 +29,7 @@ public class AccessPointAttributesService {
                 .collect(Collectors.toList());
     }
     public void createNewAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel){
-        repository.save(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
+        repository.insert(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
     public void updateAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel,String accessPointId){
         if(!accessPointId.equals(accessPointAttributesModel.getId())) throw new ValidationException("The Path ID and Request ID not matching");
