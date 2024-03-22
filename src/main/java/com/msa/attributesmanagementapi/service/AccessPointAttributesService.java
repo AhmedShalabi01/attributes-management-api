@@ -27,29 +27,23 @@ public class AccessPointAttributesService {
                 .map(accessPointAttributesMapper::toModel)
                 .collect(Collectors.toList());
     }
-
-
     public void createNewAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel){
         repository.save(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
-
-
-    public void updateAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel,String accessPointId ){
+    public void updateAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel,String accessPointId){
         accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
-                .orElseThrow( ()-> new RuntimeException("The AccessPoint with ID(" + accessPointId + ") does not exist")));
+                .orElseThrow( ()-> new EntityNotFoundException("The AccessPoint with ID(" + accessPointId + ") does not exist")));
 
         repository.save(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
-
     public void deleteAccessPointAttributes(String accessPointId){
         accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
-                .orElseThrow( ()-> new RuntimeException("The AccessPoint with ID(" + accessPointId + ") does not exist")));
+                .orElseThrow( ()-> new EntityNotFoundException("The AccessPoint with ID(" + accessPointId + ") does not exist")));
 
         repository.deleteById(accessPointId);
     }
-
     public AccessPointAttributesModel findAccessPointAttributesById(String accessPointId){
         return accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
