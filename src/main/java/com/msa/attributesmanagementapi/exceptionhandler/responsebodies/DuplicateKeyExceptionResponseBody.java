@@ -25,5 +25,4 @@ public class DuplicateKeyExceptionResponseBody {
         this.status = status.value();
         this.errorMessages = "The ID trying to add is already existing";
     }
-
 }
