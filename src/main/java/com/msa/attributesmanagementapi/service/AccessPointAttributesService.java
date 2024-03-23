@@ -22,39 +22,45 @@ public class AccessPointAttributesService {
     private final AccessPointAttributesRepository repository;
     private final AccessPointAttributesMapper accessPointAttributesMapper;
 
-    public List<AccessPointAttributesModel> getAllAccessPointAttributes(){
+    public List<AccessPointAttributesModel> getAllAccessPointAttributes() {
         return repository.findAll()
                 .stream()
                 .map(accessPointAttributesMapper::toModel)
                 .collect(Collectors.toList());
     }
-    public void createNewAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel){
+
+    public void createNewAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel) {
         repository.insert(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
-    public void updateAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel,String accessPointId){
-        if(!accessPointId.equals(accessPointAttributesModel.getId())) throw new ValidationException("The Path ID and Request ID not matching");
+
+    public void updateAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel, String accessPointId) {
+        if (!accessPointId.equals(accessPointAttributesModel.getId()))
+            throw new ValidationException("The Path ID and Request ID not matching");
         accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
-                .orElseThrow( ()-> new EntityNotFoundException("The AccessPoint with ID( " + accessPointId + ") does not exist")));
+                .orElseThrow(() -> new EntityNotFoundException("The AccessPoint with ID(" + accessPointId + ") does not exist")));
 
         repository.save(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
-    public void deleteAccessPointAttributes(String accessPointId){
+
+    public void deleteAccessPointAttributes(String accessPointId) {
         accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
-                .orElseThrow( ()-> new EntityNotFoundException("The AccessPoint with ID( " + accessPointId + ") does not exist")));
+                .orElseThrow(() -> new EntityNotFoundException("The AccessPoint with ID(" + accessPointId + ") does not exist")));
 
         repository.deleteById(accessPointId);
     }
-    public AccessPointAttributesModel findAccessPointAttributesById(String accessPointId){
+
+    public AccessPointAttributesModel findAccessPointAttributesById(String accessPointId) {
         return accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
-                .orElseThrow( ()-> new EntityNotFoundException("The Access Point with ID( " + accessPointId + ") does not exist")));
+                .orElseThrow(() -> new EntityNotFoundException("The Access Point with ID(" + accessPointId + ") does not exist")));
     }
-    public AccessPointAttributesModel findAccessPointAttributesByLocation(String accessPointLocation){
+
+    public AccessPointAttributesModel findAccessPointAttributesByLocation(String accessPointLocation) {
         return accessPointAttributesMapper.toModel(repository
                 .findByLocation(accessPointLocation)
-                .orElseThrow( ()-> new EntityNotFoundException("The Access Point with Location( " + accessPointLocation + ") does not exist")));
+                .orElseThrow(() -> new EntityNotFoundException("The Access Point with Location(" + accessPointLocation + ") does not exist")));
     }
 
 }
