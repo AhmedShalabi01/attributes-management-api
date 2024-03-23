@@ -1,5 +1,6 @@
 package com.msa.attributesmanagementapi.exceptionhandler.responsebodies;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 public class DuplicateKeyExceptionResponseBody {
 
     @JsonProperty("timestamp")
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
     private final LocalDateTime dateTime;
     @JsonProperty("status")
     private final Integer status;
@@ -23,7 +25,7 @@ public class DuplicateKeyExceptionResponseBody {
     public DuplicateKeyExceptionResponseBody(HttpStatusCode status) {
         this.dateTime = LocalDateTime.now();
         this.status = status.value();
-        this.errorMessages = "The ID trying to add is already existing";
+        this.errorMessages = "ID already exists";
     }
 
 }
