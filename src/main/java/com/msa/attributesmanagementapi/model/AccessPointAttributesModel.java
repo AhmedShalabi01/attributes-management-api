@@ -11,7 +11,7 @@ import lombok.Data;
 public class AccessPointAttributesModel {
 
     @NotBlank(message = "The ID field Can not be blank")
-    @Min(value = 1,message = "The ID can not be zero or less")
+    @Min(value = 1, message = "The ID can not be zero or less")
     private String id;
 
     @NotBlank(message = "The ID field Can not be blank")
@@ -21,6 +21,6 @@ public class AccessPointAttributesModel {
     private Boolean isTampered;
 
     @NotNull
-    @Min(value = 1,message = "The occupancy level can not be zero or less")
+    @Min(value = 1, message = "The occupancy level can not be zero or less")
     private int occupancyLevel;
 }
