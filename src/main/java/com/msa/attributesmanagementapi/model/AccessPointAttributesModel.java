@@ -14,7 +14,7 @@ public class AccessPointAttributesModel {
     @Min(value = 1, message = "The ID can not be zero or less")
     private String id;
 
-    @NotBlank(message = "The location field Can not be blank")
+    @NotBlank(message = "The location field can not be blank")
     private String location;
 
     @NotNull
