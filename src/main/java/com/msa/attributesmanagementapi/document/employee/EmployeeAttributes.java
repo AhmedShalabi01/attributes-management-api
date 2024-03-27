@@ -1,5 +1,6 @@
-package com.msa.attributesmanagementapi.document;
+package com.msa.attributesmanagementapi.document.employee;
 
+import com.msa.attributesmanagementapi.document.TimeSchedule;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -7,10 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @AllArgsConstructor
-
-@Document(collection = "userAttributes")
-
-public class UserAttributes {
+@Document(collection = "employeeAttributes")
+public class EmployeeAttributes {
 
     @Id
     private String id;

@@ -10,7 +10,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class AccessPointAttributesModel {
 
-    @NotBlank(message = "The ID field Can not be blank")
     @Min(value = 1, message = "The ID can not be zero or less")
     private String id;
 
