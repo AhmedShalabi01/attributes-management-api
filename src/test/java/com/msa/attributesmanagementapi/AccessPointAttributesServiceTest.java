@@ -1,6 +1,6 @@
 package com.msa.attributesmanagementapi;
 
-import com.msa.attributesmanagementapi.document.AccessPointAttributes;
+import com.msa.attributesmanagementapi.document.accesspoint.AccessPointAttributes;
 import com.msa.attributesmanagementapi.mapper.AccessPointAttributesMapper;
 import com.msa.attributesmanagementapi.model.AccessPointAttributesModel;
 import com.msa.attributesmanagementapi.repo.AccessPointAttributesRepository;
@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.mongodb.core.MongoOperations;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,8 @@ class AccessPointAttributesServiceTest {
 
     @Mock
     private AccessPointAttributesMapper accessPointAttributesMapper;
+    @Mock
+    private MongoOperations mongoOperations;
 
     @InjectMocks
     private AccessPointAttributesService service;
@@ -68,7 +71,7 @@ class AccessPointAttributesServiceTest {
         service.createNewAccessPointAttributes(model);
 
         verify(accessPointAttributesMapper).toDocument(model);
-        verify(repository).save(any(AccessPointAttributes.class));
+        verify(repository).insert(any(AccessPointAttributes.class));
     }
 
     @Test
