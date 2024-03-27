@@ -12,15 +12,14 @@ import lombok.Data;
 @AllArgsConstructor
 public class UserAttributesModel {
 
-
-    @NotBlank(message = "The ID field Can not be blank")
-    @Min(value = 1,message = "The ID can not be zero or less")
+    @NotBlank(message = "The ID field can not be blank")
+    @Min(value = 1, message = "The ID can not be zero or less")
     private String id;
 
-    @NotBlank(message = "The role field Can not be blank")
+    @NotBlank(message = "The role field can not be blank")
     private String role;
 
-    @NotBlank(message = "The department field Can not be blank")
+    @NotBlank(message = "The department field can not be blank")
     private String department;
 
     @Valid
@@ -31,9 +30,9 @@ public class UserAttributesModel {
     @NotNull
     private int yearsOfExperience;
 
-    @NotBlank(message = "The clearance Level field Can not be blank")
+    @NotBlank(message = "The clearance level field can not be blank")
     private String clearanceLevel;
 
-    @NotBlank(message = "The employment status Level field Can not be blank")
+    @NotBlank(message = "The employment status field can not be blank")
     private String employmentStatus;
 }
