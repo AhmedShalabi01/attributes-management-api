@@ -1,6 +1,6 @@
 package com.msa.attributesmanagementapi.mapper;
 
-import com.msa.attributesmanagementapi.document.AccessPointAttributes;
+import com.msa.attributesmanagementapi.document.accesspoint.AccessPointAttributes;
 import com.msa.attributesmanagementapi.model.AccessPointAttributesModel;
 import org.mapstruct.Mapper;
 

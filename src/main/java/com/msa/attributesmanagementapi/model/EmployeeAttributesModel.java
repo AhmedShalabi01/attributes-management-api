@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class UserAttributesModel {
+public class EmployeeAttributesModel {
 
     @NotBlank(message = "The ID field can not be blank")
     @Min(value = 1, message = "The ID can not be zero or less")
