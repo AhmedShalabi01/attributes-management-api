@@ -25,12 +25,12 @@ public class AccessPointAttributesController {
         return new ResponseEntity<>(accessPointService.getAllAccessPointAttributes(), HttpStatus.OK);
     }
 
-    @GetMapping("find/id/{id}")
+    @GetMapping("/find/id/{id}")
     public ResponseEntity<AccessPointAttributesModel> getAccessPointAttributesById(@PathVariable String id){
         return new ResponseEntity<>(accessPointService.findAccessPointAttributesById(id), HttpStatus.OK);
     }
 
-    @GetMapping("find/location/{location}")
+    @GetMapping("/find/location/{location}")
     public ResponseEntity<AccessPointAttributesModel> getAccessPointAttributesByLocation(@PathVariable String location){
         return new ResponseEntity<>(accessPointService.findAccessPointAttributesByLocation(location), HttpStatus.OK);
     }

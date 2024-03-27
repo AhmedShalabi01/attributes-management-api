@@ -21,7 +21,7 @@ public class UserAttributesController {
         return new ResponseEntity<>(userService.getAllUsersAttributes(), HttpStatus.OK);
     }
 
-    @GetMapping("find/id/{id}")
+    @GetMapping("/find/id/{id}")
     public ResponseEntity<UserAttributesModel> getUserAttributes(@PathVariable String id){
         return new ResponseEntity<>(userService.findUserAttributes(id), HttpStatus.OK);
     }
