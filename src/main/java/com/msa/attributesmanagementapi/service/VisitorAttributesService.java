@@ -29,34 +29,34 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 @RequiredArgsConstructor
 public class VisitorAttributesService {
     private final VisitorAttributesRepository repository;
-    private final VisitorAttributesMapper Mapper;
+    private final VisitorAttributesMapper mapper;
     private final MongoOperations mongoOperations;
 
     public List<VisitorAttributesModel> getAllVisitorsAttributes(){
 
         return repository.findAll()
                 .stream()
-                .map(Mapper::toModel)
+                .map(mapper::toModel)
                 .collect(Collectors.toList());
 
     }
 
     public void createNewVisitorAttributes(@Valid VisitorAttributesModel visitorModel){
         visitorModel.setId(generateSequence());
-        repository.insert(Mapper.toDocument(visitorModel));
+        repository.insert(mapper.toDocument(visitorModel));
     }
 
     public void updateVisitorAttributes(@Valid VisitorAttributesModel visitorModel, String visitorId) {
         if(!visitorId.equals(visitorModel.getId())) throw new ValidationException("The Path ID and Request ID not matching");
-        Mapper.toModel(repository
+        mapper.toModel(repository
                 .findById(visitorId)
                 .orElseThrow(() -> new EntityNotFoundException("The Visitor with ID : (" + visitorId + ") does not exist")));
 
-        repository.save(Mapper.toDocument(visitorModel));
+        repository.save(mapper.toDocument(visitorModel));
     }
 
     public void deleteVisitorAttributes(String visitorId) {
-        Mapper.toModel(repository
+        mapper.toModel(repository
                 .findById(visitorId)
                 .orElseThrow(() -> new EntityNotFoundException("The Visitor with ID : (" + visitorId + ") does not exist")));
 
@@ -64,7 +64,7 @@ public class VisitorAttributesService {
     }
 
     public VisitorAttributesModel findVisitorAttributes(String visitorId) {
-        return Mapper.toModel(repository
+        return mapper.toModel(repository
                 .findById(visitorId)
                 .orElseThrow(() -> new EntityNotFoundException("The Visitor with ID : (" + visitorId + ") does not exist")));
     }
