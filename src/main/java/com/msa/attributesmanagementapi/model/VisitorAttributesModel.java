@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class VisitorAttributesModel {
-
+    @NotBlank(message = "The ID field Can not be blank")
     @Min(value = 1,message = "The ID can not be zero or less")
     private String id;
 

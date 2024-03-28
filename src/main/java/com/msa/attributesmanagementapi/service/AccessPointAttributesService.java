@@ -2,8 +2,6 @@ package com.msa.attributesmanagementapi.service;
 
 import com.msa.attributesmanagementapi.document.accesspoint.AccessPointAttributes;
 import com.msa.attributesmanagementapi.document.accesspoint.AccessPointsCollectionSequence;
-import com.msa.attributesmanagementapi.document.visitor.VisitorAttributes;
-import com.msa.attributesmanagementapi.document.visitor.VisitorAttributesCollectionSequence;
 import com.msa.attributesmanagementapi.mapper.AccessPointAttributesMapper;
 import com.msa.attributesmanagementapi.model.AccessPointAttributesModel;
 import com.msa.attributesmanagementapi.repo.AccessPointAttributesRepository;
