@@ -12,6 +12,7 @@ public class VisitorAttributes {
 
     @Id
     private String id;
+    private String department;
     private String role;
     private TimeSchedule timeSchedule;
     private String clearanceLevel;
