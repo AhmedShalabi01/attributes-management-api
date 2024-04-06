@@ -1,8 +1,8 @@
 package org.pacs.attributesmanagementapi.controller;
 
 import org.pacs.attributesmanagementapi.model.AccessPointAttributesModel;
-import org.pacs.attributesmanagementapi.service.AccessPointAttributesService;
 import lombok.RequiredArgsConstructor;
+import org.pacs.attributesmanagementapi.service.AccessPointAttributesService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

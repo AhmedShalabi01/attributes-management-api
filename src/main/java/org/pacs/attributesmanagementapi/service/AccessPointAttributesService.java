@@ -1,16 +1,14 @@
-package com.msa.attributesmanagementapi.service;
+package org.pacs.attributesmanagementapi.service;
 
-import com.msa.attributesmanagementapi.document.accesspoint.AccessPointAttributes;
-import com.msa.attributesmanagementapi.document.accesspoint.AccessPointsCollectionSequence;
-import com.msa.attributesmanagementapi.document.visitor.VisitorAttributes;
-import com.msa.attributesmanagementapi.document.visitor.VisitorAttributesCollectionSequence;
-import com.msa.attributesmanagementapi.mapper.AccessPointAttributesMapper;
-import com.msa.attributesmanagementapi.model.AccessPointAttributesModel;
-import com.msa.attributesmanagementapi.repo.AccessPointAttributesRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
+import org.pacs.attributesmanagementapi.document.accesspoint.AccessPointAttributes;
+import org.pacs.attributesmanagementapi.document.accesspoint.AccessPointsCollectionSequence;
+import org.pacs.attributesmanagementapi.mapper.AccessPointAttributesMapper;
+import org.pacs.attributesmanagementapi.model.AccessPointAttributesModel;
+import org.pacs.attributesmanagementapi.repo.AccessPointAttributesRepository;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
