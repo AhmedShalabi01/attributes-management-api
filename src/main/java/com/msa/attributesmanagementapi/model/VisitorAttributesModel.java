@@ -14,6 +14,9 @@ public class VisitorAttributesModel {
     @Min(value = 1,message = "The ID can not be zero or less")
     private String id;
 
+    @NotBlank(message = "The department field Can not be blank")
+    private String department;
+
     @NotBlank(message = "The role field Can not be blank")
     private String role;
     @Valid
