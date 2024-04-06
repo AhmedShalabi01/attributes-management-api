@@ -8,11 +8,11 @@
 		<version>3.2.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.msa</groupId>
+	<groupId>org.pacs</groupId>
 	<artifactId>attributes-management-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>graduation-project</name>
-	<description>Demo project for Spring Boot</description>
+	<name>attributes-management-api</name>
+	<description>attributes-management-api</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
