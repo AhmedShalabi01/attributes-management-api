@@ -29,23 +29,23 @@ class EmployeeAttributesServiceTest {
     private EmployeeAttributesRepository repository;
 
     @Mock
-    private EmployeeAttributesMapper userMapper;
+    private EmployeeAttributesMapper employeeMapper;
 
     @InjectMocks
     private EmployeeAttributesService service;
 
     @Test
-    void getAllUsersAttributes_success() {
+    void getAllEmployeesAttributes_success() {
         // Setup - Test Documents
         List<EmployeeAttributes> documents = List.of(
                 new EmployeeAttributes("1", "Developer", "Engineering",
                         new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                                 Set.of("MONDAY", "TUESDAY")),
-                        5, "Secret", "Full-Time"),
+                        5, "Level 1", "Full-Time"),
                 new EmployeeAttributes("2", "Manager", "HR",
                         new TimeSchedule(LocalTime.of(8, 30), LocalTime.of(17, 30),
                                 Set.of("MONDAY", "WEDNESDAY")),
-                        10, "Top Secret", "Contract")
+                        10, "Level 2", "Part-Time")
         );
 
         // Setup - Test Models
@@ -53,16 +53,16 @@ class EmployeeAttributesServiceTest {
                 new EmployeeAttributesModel("1", "Developer", "Engineering",
                         new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                                 Set.of("MONDAY", "TUESDAY")),
-                        5, "Secret", "Full-Time"),
+                        5, "Level 1", "Full-Time"),
                 new EmployeeAttributesModel("2", "Manager", "HR",
                         new TimeSchedule(LocalTime.of(8, 30), LocalTime.of(17, 30),
                                 Set.of("MONDAY", "WEDNESDAY")),
-                        10, "Top Secret", "Contract")
+                        10, "Level 2", "Part-Time")
         );
 
         // Setup Mocks
         when(repository.findAll()).thenReturn(documents);
-        when(userMapper.toModel(any(EmployeeAttributes.class))).thenAnswer(invocation -> {
+        when(employeeMapper.toModel(any(EmployeeAttributes.class))).thenAnswer(invocation -> {
             EmployeeAttributes doc = invocation.getArgument(0);
             // Construct a UserAttributesModel from 'doc' (your mapping logic here)
             return new EmployeeAttributesModel(doc.getId(), doc.getRole(), doc.getDepartment(),
@@ -76,66 +76,66 @@ class EmployeeAttributesServiceTest {
         // Verify
         assertThat(actualModels).isEqualTo(expectedModels);
         verify(repository).findAll();
-        verify(userMapper, times(documents.size())).toModel(any());
+        verify(employeeMapper, times(documents.size())).toModel(any());
     }
 
     @Test
-    void createNewUserAttributes_valid() {
-        EmployeeAttributesModel userModel = new EmployeeAttributesModel("1", "Developer", "Engineering",
+    void createNewEmployeeAttributes_valid() {
+        EmployeeAttributesModel employeeModel = new EmployeeAttributesModel("1", "Developer", "Engineering",
                 new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                         Set.of("MONDAY")),
-                5, "Secret", "Full-Time");
+                5, "Level 1", "Full-Time");
 
-        when(userMapper.toDocument(userModel)).thenReturn(new EmployeeAttributes("1", "Developer", "Engineering",
+        when(employeeMapper.toDocument(employeeModel)).thenReturn(new EmployeeAttributes("1", "Developer", "Engineering",
                 new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                         Set.of("MONDAY")),
-                5, "Secret", "Full-Time"));
+                5, "Level 1", "Full-Time"));
 
-        service.createNewEmployeeAttributes(userModel);
+        service.createNewEmployeeAttributes(employeeModel);
 
-        verify(userMapper).toDocument(userModel);
+        verify(employeeMapper).toDocument(employeeModel);
         verify(repository).insert(any(EmployeeAttributes.class));
     }
 
 
     @Test
-    void updateUserAttributes_userFound() {
-        String userId = "1";
-        EmployeeAttributesModel userModel = new EmployeeAttributesModel("1", "Developer", "Engineering",
+    void updateEmployeeAttributes_userFound() {
+        String employeeId = "1";
+        EmployeeAttributesModel employeeModel = new EmployeeAttributesModel("1", "Developer", "Engineering",
                 new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                         Set.of("MONDAY")),
-                5, "Secret", "Full-Time");
+                5, "Level 1", "Full-Time");
 
         EmployeeAttributes existingDocument = new EmployeeAttributes("1", "Developer", "Engineering",
                 new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                         Set.of("MONDAY")),
-                5, "Secret", "Full-Time");
-        when(repository.findById(userId)).thenReturn(Optional.of(existingDocument));
-        when(userMapper.toDocument(userModel)).thenReturn(existingDocument);
+                5, "Level 1", "Full-Time");
+        when(repository.findById(employeeId)).thenReturn(Optional.of(existingDocument));
+        when(employeeMapper.toDocument(employeeModel)).thenReturn(existingDocument);
 
-        service.updateEmployeeAttributes(userModel, userId);
+        service.updateEmployeeAttributes(employeeModel, employeeId);
 
-        verify(repository).findById(userId);
-        verify(userMapper).toModel(existingDocument);
-        verify(userMapper).toDocument(userModel);
+        verify(repository).findById(employeeId);
+        verify(employeeMapper).toModel(existingDocument);
+        verify(employeeMapper).toDocument(employeeModel);
         verify(repository).save(any(EmployeeAttributes.class));
     }
 
 
     @Test
-    void deleteUserAttributes_userFound() {
-        String userId = "1";
+    void deleteEmployeeAttributes_userFound() {
+        String employeeId = "1";
         EmployeeAttributes existingDocument = new EmployeeAttributes("1", "Developer", "Engineering",
                 new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                         Set.of("MONDAY")),
-                5, "Secret", "Full-Time");
-        when(repository.findById(userId)).thenReturn(Optional.of(existingDocument));
+                5, "Level 1", "Full-Time");
+        when(repository.findById(employeeId)).thenReturn(Optional.of(existingDocument));
 
-        service.deleteEmployeeAttributes(userId);
+        service.deleteEmployeeAttributes(employeeId);
 
-        verify(repository).findById(userId);
-        verify(userMapper).toModel(existingDocument);
-        verify(repository).deleteById(userId);
+        verify(repository).findById(employeeId);
+        verify(employeeMapper).toModel(existingDocument);
+        verify(repository).deleteById(employeeId);
     }
 }
 
