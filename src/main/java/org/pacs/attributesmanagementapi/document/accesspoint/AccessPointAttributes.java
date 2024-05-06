@@ -21,4 +21,5 @@ public class AccessPointAttributes {
     private String location;
     private Boolean isTampered;
     private Integer occupancyLevel;
+    private Integer maxOccupancyLevel;
 }

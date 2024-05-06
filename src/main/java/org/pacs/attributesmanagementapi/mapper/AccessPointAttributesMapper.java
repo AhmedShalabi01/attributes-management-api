@@ -8,6 +8,5 @@ import org.mapstruct.Mapper;
 public interface    AccessPointAttributesMapper {
 
     AccessPointAttributesModel toModel(final AccessPointAttributes accessPointAttributes);
-
     AccessPointAttributes toDocument(final AccessPointAttributesModel accessPointAttributesModel);
 }
