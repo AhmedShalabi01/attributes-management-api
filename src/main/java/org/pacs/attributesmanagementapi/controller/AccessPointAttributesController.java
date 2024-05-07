@@ -44,9 +44,9 @@ public class AccessPointAttributesController {
         return new ResponseEntity<>("Access Point Attributes Updated",HttpStatus.OK);
     }
 
-    @PutMapping(path = "/live-update/{id}")
-    public ResponseEntity<String> updateLiveAccessPointAttributes(@RequestBody LiveAccessPointAttributesModel liveAccessPointAttributesModel, @PathVariable String id){
-        accessPointService.updateLiveAccessPointAttributes(liveAccessPointAttributesModel,id);
+    @PutMapping(path = "/live-update/{location}")
+    public ResponseEntity<String> updateLiveAccessPointAttributes(@RequestBody LiveAccessPointAttributesModel liveAccessPointAttributesModel, @PathVariable String location){
+        accessPointService.updateLiveAccessPointAttributes(liveAccessPointAttributesModel,location);
         return new ResponseEntity<>("Access Point Attributes Updated",HttpStatus.OK);
     }
 
