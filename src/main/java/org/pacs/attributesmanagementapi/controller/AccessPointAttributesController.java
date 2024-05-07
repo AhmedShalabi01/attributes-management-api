@@ -2,6 +2,7 @@ package org.pacs.attributesmanagementapi.controller;
 
 import org.pacs.attributesmanagementapi.model.AccessPointAttributesModel;
 import lombok.RequiredArgsConstructor;
+import org.pacs.attributesmanagementapi.model.LiveAccessPointAttributesModel;
 import org.pacs.attributesmanagementapi.service.AccessPointAttributesService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,9 +38,15 @@ public class AccessPointAttributesController {
         return new ResponseEntity<>("Access Point Attributes Created",HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/update/{id}")
-    public ResponseEntity<String> updateAccessPointAttributes(@RequestBody AccessPointAttributesModel accessPointAttributesModel,@PathVariable String id){
-        accessPointService.updateAccessPointAttributes(accessPointAttributesModel,id);
+    @PutMapping(path = "/admin-update/{id}")
+    public ResponseEntity<String> updateAllAccessPointAttributes(@RequestBody AccessPointAttributesModel accessPointAttributesModel, @PathVariable String id){
+        accessPointService.updateAllAccessPointAttributes(accessPointAttributesModel,id);
+        return new ResponseEntity<>("Access Point Attributes Updated",HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/live-update/{id}")
+    public ResponseEntity<String> updateLiveAccessPointAttributes(@RequestBody LiveAccessPointAttributesModel liveAccessPointAttributesModel, @PathVariable String id){
+        accessPointService.updateLiveAccessPointAttributes(liveAccessPointAttributesModel,id);
         return new ResponseEntity<>("Access Point Attributes Updated",HttpStatus.OK);
     }
 

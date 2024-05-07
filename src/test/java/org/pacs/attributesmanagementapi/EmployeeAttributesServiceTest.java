@@ -41,11 +41,11 @@ class EmployeeAttributesServiceTest {
                 new EmployeeAttributes("1", "Developer", "Engineering",
                         new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                                 Set.of("MONDAY", "TUESDAY")),
-                        5, "Level 1", "Full-Time"),
+                         "Level 1", "Full-Time"),
                 new EmployeeAttributes("2", "Manager", "HR",
                         new TimeSchedule(LocalTime.of(8, 30), LocalTime.of(17, 30),
                                 Set.of("MONDAY", "WEDNESDAY")),
-                        10, "Level 2", "Part-Time")
+                         "Level 2", "Part-Time")
         );
 
         // Setup - Test Models
@@ -53,11 +53,11 @@ class EmployeeAttributesServiceTest {
                 new EmployeeAttributesModel("1", "Developer", "Engineering",
                         new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                                 Set.of("MONDAY", "TUESDAY")),
-                        5, "Level 1", "Full-Time"),
+                         "Level 1", "Full-Time"),
                 new EmployeeAttributesModel("2", "Manager", "HR",
                         new TimeSchedule(LocalTime.of(8, 30), LocalTime.of(17, 30),
                                 Set.of("MONDAY", "WEDNESDAY")),
-                        10, "Level 2", "Part-Time")
+                         "Level 2", "Part-Time")
         );
 
         // Setup Mocks
@@ -66,7 +66,7 @@ class EmployeeAttributesServiceTest {
             EmployeeAttributes doc = invocation.getArgument(0);
             // Construct a UserAttributesModel from 'doc' (your mapping logic here)
             return new EmployeeAttributesModel(doc.getId(), doc.getRole(), doc.getDepartment(),
-                    doc.getTimeSchedule(), doc.getYearsOfExperience(), doc.getClearanceLevel(),
+                    doc.getTimeSchedule(), doc.getClearanceLevel(),
                     doc.getEmploymentStatus());
         });
 
@@ -84,12 +84,12 @@ class EmployeeAttributesServiceTest {
         EmployeeAttributesModel employeeModel = new EmployeeAttributesModel("1", "Developer", "Engineering",
                 new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                         Set.of("MONDAY")),
-                5, "Level 1", "Full-Time");
+                 "Level 1", "Full-Time");
 
         when(employeeMapper.toDocument(employeeModel)).thenReturn(new EmployeeAttributes("1", "Developer", "Engineering",
                 new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                         Set.of("MONDAY")),
-                5, "Level 1", "Full-Time"));
+                 "Level 1", "Full-Time"));
 
         service.createNewEmployeeAttributes(employeeModel);
 
@@ -104,12 +104,12 @@ class EmployeeAttributesServiceTest {
         EmployeeAttributesModel employeeModel = new EmployeeAttributesModel("1", "Developer", "Engineering",
                 new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                         Set.of("MONDAY")),
-                5, "Level 1", "Full-Time");
+                "Level 1", "Full-Time");
 
         EmployeeAttributes existingDocument = new EmployeeAttributes("1", "Developer", "Engineering",
                 new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                         Set.of("MONDAY")),
-                5, "Level 1", "Full-Time");
+                 "Level 1", "Full-Time");
         when(repository.findById(employeeId)).thenReturn(Optional.of(existingDocument));
         when(employeeMapper.toDocument(employeeModel)).thenReturn(existingDocument);
 
@@ -128,7 +128,7 @@ class EmployeeAttributesServiceTest {
         EmployeeAttributes existingDocument = new EmployeeAttributes("1", "Developer", "Engineering",
                 new TimeSchedule(LocalTime.of(9, 0), LocalTime.of(17, 0),
                         Set.of("MONDAY")),
-                5, "Level 1", "Full-Time");
+                 "Level 1", "Full-Time");
         when(repository.findById(employeeId)).thenReturn(Optional.of(existingDocument));
 
         service.deleteEmployeeAttributes(employeeId);

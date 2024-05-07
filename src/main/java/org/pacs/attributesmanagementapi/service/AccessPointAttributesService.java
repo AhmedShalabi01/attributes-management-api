@@ -8,6 +8,7 @@ import org.pacs.attributesmanagementapi.document.accesspoint.AccessPointAttribut
 import org.pacs.attributesmanagementapi.document.accesspoint.AccessPointsCollectionSequence;
 import org.pacs.attributesmanagementapi.mapper.AccessPointAttributesMapper;
 import org.pacs.attributesmanagementapi.model.AccessPointAttributesModel;
+import org.pacs.attributesmanagementapi.model.LiveAccessPointAttributesModel;
 import org.pacs.attributesmanagementapi.repo.AccessPointAttributesRepository;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
@@ -44,12 +45,27 @@ public class AccessPointAttributesService {
         repository.insert(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
 
-    public void updateAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel, String accessPointId) {
+    public void updateAllAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel, String accessPointId) {
         if (!accessPointId.equals(accessPointAttributesModel.getId()))
             throw new ValidationException("The Path ID and Request ID not matching");
         accessPointAttributesMapper.toModel(repository
                 .findById(accessPointId)
                 .orElseThrow(() -> new EntityNotFoundException("The AccessPoint with ID(" + accessPointId + ") does not exist")));
+
+        repository.save(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
+    }
+
+    public void updateLiveAccessPointAttributes(@Valid LiveAccessPointAttributesModel liveAccessPointAttributesModel, String accessPointId) {
+        if (!accessPointId.equals(liveAccessPointAttributesModel.getId()))
+            throw new ValidationException("The Path ID and Request ID not matching");
+
+        AccessPointAttributesModel accessPointAttributesModel = accessPointAttributesMapper.toModel(repository
+                .findById(accessPointId)
+                .orElseThrow(() -> new EntityNotFoundException("The AccessPoint with ID(" + accessPointId + ") does not exist")));
+
+        // Update live attributes from model
+        accessPointAttributesModel.setIsTampered(liveAccessPointAttributesModel.getIsTampered());
+        accessPointAttributesModel.setOccupancyLevel(liveAccessPointAttributesModel.getOccupancyLevel());
 
         repository.save(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
