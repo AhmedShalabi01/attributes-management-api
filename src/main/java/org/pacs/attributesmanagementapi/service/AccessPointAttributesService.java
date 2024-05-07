@@ -55,13 +55,13 @@ public class AccessPointAttributesService {
         repository.save(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
 
-    public void updateLiveAccessPointAttributes(@Valid LiveAccessPointAttributesModel liveAccessPointAttributesModel, String accessPointId) {
-        if (!accessPointId.equals(liveAccessPointAttributesModel.getId()))
-            throw new ValidationException("The Path ID and Request ID not matching");
+    public void updateLiveAccessPointAttributes(@Valid LiveAccessPointAttributesModel liveAccessPointAttributesModel, String location) {
+        if (!location.equals(liveAccessPointAttributesModel.getLocation()))
+            throw new ValidationException("The Path location and Request location not matching");
 
         AccessPointAttributesModel accessPointAttributesModel = accessPointAttributesMapper.toModel(repository
-                .findById(accessPointId)
-                .orElseThrow(() -> new EntityNotFoundException("The AccessPoint with ID(" + accessPointId + ") does not exist")));
+                .findByLocation(location)
+                .orElseThrow(() -> new EntityNotFoundException("The AccessPoint with location (" + location + ") does not exist")));
 
         // Update live attributes from model
         accessPointAttributesModel.setIsTampered(liveAccessPointAttributesModel.getIsTampered());
