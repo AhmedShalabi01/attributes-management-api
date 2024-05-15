@@ -27,20 +27,20 @@ public class VisitorAttributesController {
     }
 
     @PostMapping(path = "/add")
-    public ResponseEntity<String> createNewVisitorAttributes(@RequestBody VisitorAttributesModel visitorModel){
+    public ResponseEntity<Void> createNewVisitorAttributes(@RequestBody VisitorAttributesModel visitorModel){
         visitorService.createNewVisitorAttributes(visitorModel);
-        return new ResponseEntity<>("Visitor Attributes Created",HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/update/{id}")
-    public ResponseEntity<String> updateVisitorAttributes(@RequestBody VisitorAttributesModel visitorModel, @PathVariable String id){
+    public ResponseEntity<Void> updateVisitorAttributes(@RequestBody VisitorAttributesModel visitorModel, @PathVariable String id){
         visitorService.updateVisitorAttributes(visitorModel,id);
-        return new ResponseEntity<>("Visitor Attributes Updated",HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping (value = "/delete/{id}")
-    public ResponseEntity<String> deleteVisitorAttributes(@PathVariable String id){
+    public ResponseEntity<Void> deleteVisitorAttributes(@PathVariable String id){
         visitorService.deleteVisitorAttributes(id);
-        return new ResponseEntity<>("Visitor Attributes Deleted",HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

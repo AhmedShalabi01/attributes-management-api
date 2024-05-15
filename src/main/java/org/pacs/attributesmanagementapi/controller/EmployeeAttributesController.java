@@ -27,20 +27,20 @@ public class EmployeeAttributesController {
     }
 
     @PostMapping(path = "/add")
-    public ResponseEntity<String> createNewEmployeeAttributes(@RequestBody EmployeeAttributesModel employeeModel){
+    public ResponseEntity<Void> createNewEmployeeAttributes(@RequestBody EmployeeAttributesModel employeeModel){
         employeeService.createNewEmployeeAttributes(employeeModel);
-        return new ResponseEntity<>("Employee Attributes Created",HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/update/{id}")
-    public ResponseEntity<String> updateEmployeeAttributes(@RequestBody EmployeeAttributesModel employeeModel, @PathVariable String id){
+    public ResponseEntity<Void> updateEmployeeAttributes(@RequestBody EmployeeAttributesModel employeeModel, @PathVariable String id){
         employeeService.updateEmployeeAttributes(employeeModel,id);
-        return new ResponseEntity<>("Employee Attributes Updated",HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping (value = "/delete/{id}")
-    public ResponseEntity<String> deleteEmployeeAttributes(@PathVariable String id){
+    public ResponseEntity<Void> deleteEmployeeAttributes(@PathVariable String id){
         employeeService.deleteEmployeeAttributes(id);
-        return new ResponseEntity<>("Employee Attributes Deleted",HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

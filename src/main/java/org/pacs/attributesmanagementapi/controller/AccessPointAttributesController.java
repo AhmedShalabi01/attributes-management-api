@@ -33,26 +33,26 @@ public class AccessPointAttributesController {
     }
 
     @PostMapping(path = "/add")
-    public ResponseEntity<String> createNewAccessPointAttributes(@RequestBody AccessPointAttributesModel accessPointAttributesModel){
+    public ResponseEntity<Void> createNewAccessPointAttributes(@RequestBody AccessPointAttributesModel accessPointAttributesModel){
         accessPointService.createNewAccessPointAttributes(accessPointAttributesModel);
-        return new ResponseEntity<>("Access Point Attributes Created",HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/admin-update/{id}")
-    public ResponseEntity<String> updateAllAccessPointAttributes(@RequestBody AccessPointAttributesModel accessPointAttributesModel, @PathVariable String id){
+    public ResponseEntity<Void> updateAllAccessPointAttributes(@RequestBody AccessPointAttributesModel accessPointAttributesModel, @PathVariable String id){
         accessPointService.updateAllAccessPointAttributes(accessPointAttributesModel,id);
-        return new ResponseEntity<>("Access Point Attributes Updated",HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping(path = "/live-update/{location}")
-    public ResponseEntity<String> updateLiveAccessPointAttributes(@RequestBody LiveAccessPointAttributesModel liveAccessPointAttributesModel, @PathVariable String location){
+    public ResponseEntity<Void> updateLiveAccessPointAttributes(@RequestBody LiveAccessPointAttributesModel liveAccessPointAttributesModel, @PathVariable String location){
         accessPointService.updateLiveAccessPointAttributes(liveAccessPointAttributesModel,location);
-        return new ResponseEntity<>("Access Point Attributes Updated",HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping (value = "/delete/{id}")
-    public ResponseEntity<String> deleteAccessPointAttributes(@PathVariable String id){
+    public ResponseEntity<Void> deleteAccessPointAttributes(@PathVariable String id){
         accessPointService.deleteAccessPointAttributes(id);
-        return new ResponseEntity<>("Access Point Attributes Deleted",HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
