@@ -1,6 +1,7 @@
 package org.pacs.attributesmanagementapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Size;
 import org.pacs.attributesmanagementapi.document.TimeSchedule;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
@@ -18,10 +19,12 @@ public class EmployeeAttributesModel {
     private String id;
 
     @NotBlank(message = "The role field can not be blank")
+    @Size(max = 20, message = "Role field exceeds the limit of 20 characters")
     @JsonProperty("RL")
     private String role;
 
     @NotBlank(message = "The department field can not be blank")
+    @Size(max = 20, message = "Department field exceeds the limit of 20 characters")
     @JsonProperty("DP")
     private String department;
 
