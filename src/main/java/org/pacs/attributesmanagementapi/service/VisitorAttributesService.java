@@ -34,7 +34,7 @@ public class VisitorAttributesService {
     }
 
     public void createNewVisitorAttributes(@Valid VisitorAttributesModel visitorModel){
-        repository.insert(Mapper.toDocument(visitorModel));
+        repository.save(Mapper.toDocument(visitorModel));
     }
 
     public void updateVisitorAttributes(@Valid VisitorAttributesModel visitorModel, String visitorId) {

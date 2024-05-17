@@ -32,7 +32,7 @@ public class EmployeeAttributesService {
     }
 
     public void createNewEmployeeAttributes(@Valid EmployeeAttributesModel employeeModel){
-        repository.insert(Mapper.toDocument(employeeModel));
+        repository.save(Mapper.toDocument(employeeModel));
     }
 
     public void updateEmployeeAttributes(@Valid EmployeeAttributesModel employeeModel, String employeeId) {
