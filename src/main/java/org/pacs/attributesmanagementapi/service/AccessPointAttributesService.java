@@ -42,7 +42,7 @@ public class AccessPointAttributesService {
 
     public void createNewAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel) {
         accessPointAttributesModel.setId(generateSequence());
-        repository.insert(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
+        repository.save(accessPointAttributesMapper.toDocument(accessPointAttributesModel));
     }
 
     public void updateAllAccessPointAttributes(@Valid AccessPointAttributesModel accessPointAttributesModel, String accessPointId) {
