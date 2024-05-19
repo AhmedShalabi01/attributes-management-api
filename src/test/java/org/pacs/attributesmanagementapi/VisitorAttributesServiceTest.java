@@ -87,7 +87,7 @@ class VisitorAttributesServiceTest {
         service.createNewVisitorAttributes(visitorModel);
 
         verify(visitorMapper).toDocument(visitorModel);
-        verify(repository).insert(any(VisitorAttributes.class));
+        verify(repository).save(any(VisitorAttributes.class));
     }
 
 

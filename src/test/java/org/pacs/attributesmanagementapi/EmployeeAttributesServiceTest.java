@@ -94,7 +94,7 @@ class EmployeeAttributesServiceTest {
         service.createNewEmployeeAttributes(employeeModel);
 
         verify(employeeMapper).toDocument(employeeModel);
-        verify(repository).insert(any(EmployeeAttributes.class));
+        verify(repository).save(any(EmployeeAttributes.class));
     }
 
 
