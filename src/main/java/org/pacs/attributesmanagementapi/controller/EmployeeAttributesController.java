@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/users-attributes/employee")
+@RequestMapping("/attributes-management/users-attributes/employee")
 public class EmployeeAttributesController {
 
     private final EmployeeAttributesService employeeService;

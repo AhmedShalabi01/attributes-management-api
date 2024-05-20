@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/access-points-attributes")
+@RequestMapping("/attributes-management/access-points-attributes")
 public class AccessPointAttributesController {
 
     private final AccessPointAttributesService accessPointService;

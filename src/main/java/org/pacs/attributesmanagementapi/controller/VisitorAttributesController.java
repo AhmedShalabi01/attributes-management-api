@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/users-attributes/visitor")
+@RequestMapping("/attributes-management/users-attributes/visitor")
 public class VisitorAttributesController {
 
     private final VisitorAttributesService visitorService;
