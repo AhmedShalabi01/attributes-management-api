@@ -71,7 +71,7 @@ class AccessPointAttributesServiceTest {
         service.createNewAccessPointAttributes(model);
 
         verify(accessPointAttributesMapper).toDocument(model);
-        verify(repository).save(any(AccessPointAttributes.class));
+        verify(repository).insert(any(AccessPointAttributes.class));
     }
 
     @Test
