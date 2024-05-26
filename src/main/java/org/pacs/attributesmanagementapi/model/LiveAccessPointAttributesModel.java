@@ -11,10 +11,6 @@ import lombok.RequiredArgsConstructor;
 public class LiveAccessPointAttributesModel {
 
     @NotBlank
-    @JsonProperty("ID")
-    private String id;
-
-    @NotBlank
     @JsonProperty("LC")
     private String location;
 
